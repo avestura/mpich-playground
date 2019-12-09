@@ -72,16 +72,16 @@ void check_world_size(int world_size){
 }
 
 // Gets value A[i][j]
-long long get_A(int i, int j) { return i * j; }
+long long get_A(int i, int j) { return (long)i * (long)j; }
 
 // Gets value B[i][_]
-long long get_B(int i) { return i * i; }
+long long get_B(int i) { return (long)i * (long)i; }
 
 // Calculates result of a cell in product matrix
 long long calc_cell(int i, int j) {
     long long result = 0;
     for(int k = 0; k < N; k++){
-        result += get_A(i, k) + get_B(k);
+        result += get_A(i, k) * get_B(k);
     }
     return result;
 }
@@ -89,9 +89,9 @@ long long calc_cell(int i, int j) {
 // Prints products matrix (Master only)
 void print_mat(){
     for(int i = 0; i < N; i++){
-        printf("%d: [", i);
-        for(int j = 0; j < N; j++){
-            printf("%lld, ", product[i][j]);
+        printf("%d: [%lld", i, product[i][0]);
+        for(int j = 1; j < N; j++){
+            printf(", %lld", product[i][j]);
         }
         printf("]\n\n");
     }
@@ -135,7 +135,7 @@ void calculate_area(int rank, int nodes, int last_node, bool is_master){
     int i, j;
     bool first_flag = false;
     for(i = s_i; i <= e_i; i++){
-        for(j = 0; j <= N; j++){
+        for(j = 0; j < N; j++){
             if(i == s_i && first_flag) {
                 j = s_j; first_flag = true;
             }
@@ -146,7 +146,7 @@ void calculate_area(int rank, int nodes, int last_node, bool is_master){
                 update_pmat(i, j, cell);
             }
             else {
-                 tell_master(rank, i, j, cell);
+                tell_master(rank, i, j, cell);
             }
         }
     }
