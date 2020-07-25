@@ -1,8 +1,8 @@
 /**
  * Title: Distributed calculating PI using MPICH2 Reduce
  * This file is licensed under GNU General Public License
- * By: Aryan Ebrahimpour (https://aryan.software)
- * GitHub: https://github.com/0xaryan
+ * By: Aryan Ebrahimpour (https://avestura.dev)
+ * GitHub: https://github.com/avestura
  * At: Iran University of Science and Technology, Tehran, Iran
 **/
 
